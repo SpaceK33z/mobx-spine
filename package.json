@@ -1,5 +1,5 @@
 {
-  "name": "mobx-spine",
+  "name": "@volst/mobx-spine",
   "version": "0.18.1",
   "license": "ISC",
   "author": "Kees Kluskens <kees@webduck.nl>",
@@ -8,7 +8,7 @@
   "main": "dist/mobx-spine.cjs.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/CodeYellowBV/mobx-spine.git"
+    "url": "git://github.com/SpaceK33z/mobx-spine.git"
   },
   "scripts": {
     "test": "jest",

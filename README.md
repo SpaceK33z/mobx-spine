@@ -1,11 +1,11 @@
 # mobx-spine
 
-[![Build Status](https://travis-ci.org/CodeYellowBV/mobx-spine.svg?branch=master)](https://travis-ci.org/CodeYellowBV/mobx-spine)
-[![codecov](https://codecov.io/gh/CodeYellowBV/mobx-spine/branch/master/graph/badge.svg)](https://codecov.io/gh/CodeYellowBV/mobx-spine)
+[![Build Status](https://travis-ci.org/SpaceK33z/mobx-spine.svg?branch=master)](https://travis-ci.org/SpaceK33z/mobx-spine)
+[![codecov](https://codecov.io/gh/SpaceK33z/mobx-spine/branch/master/graph/badge.svg)](https://codecov.io/gh/SpaceK33z/mobx-spine)
 
 A frontend package built upon [MobX](https://mobx.js.org/) to add models and collections. It has first-class support for relations and can communicate to a backend.
 
-By default it comes with a "communication layer" for [Django Binder](https://github.com/CodeYellowBV/django-binder), which is Code Yellow's Python backend framework. It is easy to add support for another backend.
+By default it comes with a "communication layer" for [Django Binder](https://github.com/SpaceK33z/django-binder), which is Code Yellow's Python backend framework. It is easy to add support for another backend.
 
 ```shell
 yarn add mobx-spine lodash mobx moment
