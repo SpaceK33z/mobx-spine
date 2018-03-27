@@ -8,8 +8,8 @@ A frontend package built upon [MobX](https://mobx.js.org/) to add models and col
 By default it comes with a "communication layer" for [Django Binder](https://github.com/SpaceK33z/django-binder), which is Code Yellow's Python backend framework. It is easy to add support for another backend.
 
 ```shell
-yarn add mobx-spine lodash mobx moment
-npm install mobx-spine lodash mobx moment
+yarn add @volst/mobx-spine lodash mobx moment
+npm install @volst/mobx-spine lodash mobx moment
 ```
 
 **Work In Progress.**
@@ -32,7 +32,7 @@ A basic example of mobx-spine:
 
 ```js
 import { observable } from 'mobx';
-import { Model, Store, BinderApi } from 'mobx-spine';
+import { Model, Store, BinderApi } from '@volst/mobx-spine';
 
 class Animal extends Model {
     @observable id = null;
