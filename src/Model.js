@@ -151,9 +151,7 @@ export default class Model {
                 this.__originalAttributes[key] = newValue;
             }
         });
-        if (options.relations) {
-            this.__parseRelations(options.relations);
-        }
+        this.__parseRelations(options.relations || []);
         if (data) {
             this.parse(data);
         }
@@ -192,6 +190,12 @@ export default class Model {
                 this.__activeCurrentRelations.push(currentRel);
             }
         });
+
+        const relationIds = {};
+        each(relations, (rel, relName) => {
+            relationIds[`${relName}Id`] = null;
+        });
+
         extendObservable(
             this,
             mapValues(relModels, (otherRelNames, relName) => {
@@ -205,7 +209,8 @@ export default class Model {
                     return new RelModel(options);
                 }
                 return new RelModel(null, options);
-            })
+            }),
+            relationIds
         );
     }
 
@@ -499,15 +504,23 @@ export default class Model {
                 data
             )}`
         );
+        const relations = this.relations ? this.relations() : [];
+        const localRelations = Object.keys(relations);
         forIn(data, (value, key) => {
             const attr = this.constructor.fromBackendAttrKey(key);
             if (this.__attributes.includes(attr)) {
                 this[attr] = this.__parseAttr(attr, value);
-            } else if (this.__activeCurrentRelations.includes(attr)) {
-                // In Binder, a relation property is an `int` or `[int]`, referring to its ID.
-                // However, it can also be an object if there are nested relations (non flattened).
-                if (isPlainObject(value) || isPlainObject(get(value, '[0]'))) {
-                    this[attr].parse(value);
+            } else if (localRelations.includes(attr)) {
+                this[`${attr}Id`] = value;
+                if (this.__activeCurrentRelations.includes(attr)) {
+                    // In Binder, a relation property is an `int` or `[int]`, referring to its ID.
+                    // However, it can also be an object if there are nested relations (non flattened).
+                    if (
+                        isPlainObject(value) ||
+                        isPlainObject(get(value, '[0]'))
+                    ) {
+                        this[attr].parse(value);
+                    }
                 }
             }
         });

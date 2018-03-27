@@ -207,6 +207,21 @@ test('Initialize multiple nested relations', () => {
     expect(animal.kind.location).toBeInstanceOf(Location);
 });
 
+test('Set relation id without active relation', () => {
+    const animal = new Animal({ id: 1 });
+    expect(animal.kindId).toBe(null);
+
+    const animal2 = new Animal({ id: 1, kind: 2 });
+    expect(animal2.kindId).toBe(2);
+
+    const animal3 = new Animal(
+        { id: 1, kind: { id: 2, breed: 3 } },
+        { relations: ['kind'] }
+    );
+    expect(animal2.kindId).toBe(2);
+    expect(animal3.kind.breedId).toBe(3);
+});
+
 test('Attributes list', () => {
     const animal = new Animal();
 
