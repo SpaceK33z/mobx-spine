@@ -20,18 +20,19 @@ const AVAILABLE_CONST_OPTIONS = [
     'repository',
 ];
 
+const DEFAULT_STATE = {
+    currentPage: 1,
+    limit: 25,
+    totalRecords: 0,
+};
+
 export default class Store {
     // Holds all models
     @observable models = [];
     // Holds the fetch parameters
     @observable params = {};
     @observable __pendingRequestCount = 0;
-    @observable
-    __state = {
-        currentPage: 1,
-        limit: 25,
-        totalRecords: 0,
-    };
+    @observable __state = DEFAULT_STATE;
     __activeRelations = [];
     Model = null;
     api = null;
@@ -83,6 +84,9 @@ export default class Store {
             this.__parseRelations(options.relations);
         }
         if (options.limit !== undefined) {
+            if (!this.__state) {
+                this.__state = DEFAULT_STATE;
+            }
             this.setLimit(options.limit);
         }
         if (options.comparator) {

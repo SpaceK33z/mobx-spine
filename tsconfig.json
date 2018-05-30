@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "dist/es",
+    "module": "es2015",
+    "target": "es2015",
+    "allowJs": true,
+    "lib": ["es2016", "dom"],
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true
+  },
+  "include": [
+    "src/index.js"
+  ]
+}
