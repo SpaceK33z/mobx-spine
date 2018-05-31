@@ -4,8 +4,8 @@
   "license": "ISC",
   "author": "Kees Kluskens <kees@webduck.nl>",
   "description": "MobX with support for models, relations and an API.",
-  "module": "dist/es/index.js",
-  "main": "dist/cjs/index.js",
+  "module": "dist/mobx-spine.es.js",
+  "main": "dist/mobx-spine.cjs.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/SpaceK33z/mobx-spine.git"
@@ -16,7 +16,8 @@
     "test-coverage": "jest --coverage",
     "lint": "eslint src",
     "preversion": "npm run -s lint && npm test && npm run -s build",
-    "build": "rm -rf dist/** && tsc && tsc -p tsconfig.cjs.json",
+    "version": "git add -A dist",
+    "build": "rm -f dist/** && BABEL_ENV=production node build.js",
     "precommit": "lint-staged",
     "ci": "npm run -s lint && npm run -s test-coverage && codecov"
   },
@@ -55,8 +56,7 @@
     "moment": "^2.18.1",
     "prettier": "^1.7.2",
     "rollup": "^0.57.1",
-    "rollup-plugin-babel": "^3.0.2",
-    "typescript": "^2.8.3"
+    "rollup-plugin-babel": "^3.0.2"
   },
   "peerDependencies": {
     "lodash": "^4.17.4",
